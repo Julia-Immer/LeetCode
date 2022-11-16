@@ -4,10 +4,9 @@
     Finds the Longest Substring Without Repeating Characters
 """
 
-def lengthOfLongestSubstring(self, s: str) -> int:
-    # not exactly correct
+def lengthOfLongestSubstring(s: str) -> int:
     max_len = 0
-    curr_len = 1
+    curr_len = 0
     chars_seen = {}
     
     for i in range(len(s)):
