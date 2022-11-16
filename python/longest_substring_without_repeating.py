@@ -5,6 +5,9 @@
 """
 
 def lengthOfLongestSubstring(s: str) -> int:
+    # not quite right, fails test 4
+    # should not overwrite curr_len as soon as repeat char is found
+    # instead need to keep track of where that char is to find longest substring
     max_len = 0
     curr_len = 0
     chars_seen = {}
@@ -29,6 +32,8 @@ def testLongestSubstring():
     assert lengthOfLongestSubstring(s2) == 1
     s3 = "pwwkew"
     assert lengthOfLongestSubstring(s3) == 3
+    s4 = "dvdf"
+    assert lengthOfLongestSubstring(s4) == 3 
     print("Test Successfull!\n")
 
 # run the test
