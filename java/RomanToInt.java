@@ -39,7 +39,7 @@ class RomanToInt {
                 for (int i = 0; i < s.length()-1; i++) {
                     int curr_num = romanNums.get(s.substring(i, i+1));
                     int next_num = romanNums.get(s.substring(i+1, i+2));
-                    // if this char, s[i] > s[i+1], add it to the sum
+                    // if this char, s[i] >= s[i+1], add it to the sum
                     if (curr_num >= next_num)
                         sum += curr_num;
                     else 
