@@ -25,7 +25,7 @@ class RomanToInt {
 
     public static int romanToInt(String s) {
             int sum = 0;
-            HashMap<String, Integer> romanNums = new HashMap();
+            HashMap<String, Integer> romanNums = new HashMap<String, Integer>();
             romanNums.put("I", 1);
             romanNums.put("V", 5);
             romanNums.put("X", 10);
