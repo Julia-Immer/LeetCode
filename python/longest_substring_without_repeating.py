@@ -5,25 +5,22 @@
 """
 
 def lengthOfLongestSubstring(s: str) -> int:
-    # not quite right, fails test 4
-    # should not overwrite curr_len as soon as repeat char is found
-    # instead need to keep track of where that char is to find longest substring
-    max_len = 0
-    curr_len = 0
-    chars_seen = {}
-    
-    for i in range(len(s)):
-        
-        if s[i] not in chars_seen:
-            curr_len += 1
-            chars_seen[s[i]] = True
-            if curr_len > max_len: # new max unique string?
-                max_len = curr_len
-        else:
-            curr_len = 1
-            chars_seen = {s[i]: True}
-    
-    return max_len
+        max_len = 0
+        h = 0 # head pointer
+        t = 0 # tail pointer
+        chars_seen = {} # chars in current rolling window
+
+        while (h < len(s)) and (t < len(s)):
+            if s[h] not in chars_seen or chars_seen[s[h]] < t:
+                chars_seen[s[h]] = h # add it
+            else: # duplicate in window found
+                t = chars_seen[s[h]] + 1 # move window over
+                chars_seen[s[h]] = h
+            if h - t + 1 > max_len: 
+                max_len = h - t + 1 # new max found
+            h += 1
+            
+        return max_len
 
 def testLongestSubstring():
     s1 = "abcabcbb"
@@ -31,6 +28,7 @@ def testLongestSubstring():
     s2 = "zzzzzzz"
     assert lengthOfLongestSubstring(s2) == 1
     s3 = "pwwkew"
+    print(s3, "yields", lengthOfLongestSubstring(s3))
     assert lengthOfLongestSubstring(s3) == 3
     s4 = "dvdf"
     assert lengthOfLongestSubstring(s4) == 3 
