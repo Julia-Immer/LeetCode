@@ -11,11 +11,17 @@ def lengthOfLongestSubstring(s: str) -> int:
         chars_seen = {} # chars in current rolling window
 
         while (h < len(s)) and (t < len(s)):
-            if s[h] not in chars_seen or chars_seen[s[h]] < t:
-                chars_seen[s[h]] = h # add it
-            else: # duplicate in window found
+
+            if s[h] in chars_seen and chars_seen[s[h]] >= t:
                 t = chars_seen[s[h]] + 1 # move window over
-                chars_seen[s[h]] = h
+                
+            chars_seen[s[h]] = h # add current char in
+
+            # if s[h] not in chars_seen or chars_seen[s[h]] < t:
+            #     chars_seen[s[h]] = h # add it
+            # else: # duplicate in window found
+            #     t = chars_seen[s[h]] + 1 # move window over
+            #     chars_seen[s[h]] = h
             if h - t + 1 > max_len: 
                 max_len = h - t + 1 # new max found
             h += 1
