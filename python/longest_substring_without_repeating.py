@@ -13,20 +13,15 @@ def lengthOfLongestSubstring(s: str) -> int:
         while (h < len(s)) and (t < len(s)):
 
             if s[h] in chars_seen and chars_seen[s[h]] >= t:
-                t = chars_seen[s[h]] + 1 # move window over
-                
+                t = chars_seen[s[h]] + 1 # move window over        
             chars_seen[s[h]] = h # add current char in
 
-            # if s[h] not in chars_seen or chars_seen[s[h]] < t:
-            #     chars_seen[s[h]] = h # add it
-            # else: # duplicate in window found
-            #     t = chars_seen[s[h]] + 1 # move window over
-            #     chars_seen[s[h]] = h
             if h - t + 1 > max_len: 
                 max_len = h - t + 1 # new max found
             h += 1
             
         return max_len
+
 
 def testLongestSubstring():
     s1 = "abcabcbb"
@@ -34,7 +29,6 @@ def testLongestSubstring():
     s2 = "zzzzzzz"
     assert lengthOfLongestSubstring(s2) == 1
     s3 = "pwwkew"
-    print(s3, "yields", lengthOfLongestSubstring(s3))
     assert lengthOfLongestSubstring(s3) == 3
     s4 = "dvdf"
     assert lengthOfLongestSubstring(s4) == 3 
